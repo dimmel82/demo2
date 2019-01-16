@@ -1,5 +1,10 @@
 version: '1.0'
 steps:
+  testStep:
+    title: test step
+    image: codefresh/cli
+    commands:
+      - echo $(codefresh get context test_yaml --output=json | jq -r '.spec.data.test_xml'|sed 's/&lt;/</g')
   Compilation:
     title: Compile/Unit test
     image: maven:3.5.2-jdk-8-alpine
